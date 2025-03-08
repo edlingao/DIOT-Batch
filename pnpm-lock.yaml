@@ -28,7 +28,7 @@ importers:
         specifier: ^5.7.2
         version: 5.7.2
       vite:
-        specifier: link:@types/@tailwindcss/vite
+        specifier: ^6.2.1
         version: 6.2.1(jiti@2.4.2)(lightningcss@1.29.2)
       vite-plugin-solid:
         specifier: ^2.11.6
