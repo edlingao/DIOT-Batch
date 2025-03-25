@@ -1,11 +1,36 @@
 interface Field {
   id: string;
   description: string;
+  options?: Option[];
 }
 
+export interface Option {
+  value: string;
+  text: string;
+}
+
+export const TipoTerceroOptions: Option[] = [
+  { value: "04", text: "Nacional" },
+  { value: "05", text: "Extranjero" },
+  { value: "15", text: "Global" }
+];
+
+export const TipoDeOperacionOptions: Option[] = [
+  { value: "02", text: "Enagenacion de Bienes" },
+  { value: "03", text: "Prestacion de servicios profesionales" },
+  { value: "06", text: "Uso o goce temporal de bienes" },
+  { value: "85", text: "Otros" },
+  { value: "87", text: "Operaciones Globales" },
+]
+
+export const EfectosFiscalesAlComprobanteOptions: Option[] = [
+  { value: "01", text: "Si" },
+  { value: "02", text: "No" }
+]
+
 const fields: Field[] = [
-  { id: "01", description: "Tipo de tercero" },
-  { id: "02", description: "Tipo de operación" },
+  { id: "01", description: "Tipo de tercero", options: TipoTerceroOptions },
+  { id: "02", description: "Tipo de operación", options: TipoDeOperacionOptions },
   { id: "03", description: "RFC" },
   { id: "04", description: "ID Fiscal" },
   { id: "05", description: "Nombre del Extranjero" },
@@ -57,7 +82,7 @@ const fields: Field[] = [
   { id: "51", description: "Valor de actos o actividades 0%" },
   { id: "52", description: "Valor de actos o actividades no objeto en territorio nacional" },
   { id: "53", description: "Valor de actos o actividades no objeto sin establecimiento en territorio nacional" },
-  { id: "54", description: "Efectos fiscales a los comprobantes de operaciones realizadas con el proveedor" }
+  { id: "54", description: "Efectos fiscales a los comprobantes de operaciones realizadas con el proveedor", options: EfectosFiscalesAlComprobanteOptions },
 ];
 
 export default fields;

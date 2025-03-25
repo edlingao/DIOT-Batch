@@ -8,7 +8,9 @@ export function AddRecord() {
   const handleSubmit = () => {
     const form = document.querySelector("#form");
     const values: string[] = [];
-    form?.querySelectorAll("input").forEach((input) => {
+    const inputs = form?.querySelectorAll(".input-selector") as NodeListOf<HTMLInputElement>;
+
+    inputs.forEach((input) => {
       values.push(input.value);
     });
     
@@ -45,10 +47,24 @@ export function AddRecord() {
       <form id="form" class="h-[50vh] max-w-md flex flex-col p-4 mx-auto overflow-y-auto" method="dialog">
         <For each={fields} fallback={<div>Loading...</div>}>
           {(field) => (
+            !!!field.options ? (
             <fieldset class="fieldset flex-1">
               <legend class="fieldset-legend w-full">{field.description}</legend>
-              <input type="text" name={field.description} class="input w-full" placeholder={field.description} />
+              <input type="text" name={field.description} class="input w-full input-selector" placeholder={field.description} />
             </fieldset>
+            ) : (
+            <fieldset class="fieldset flex-1">
+              <legend class="fieldset-legend w-full">{field.description}</legend>
+              <select name={field.description} class="select w-full input-selector">
+                <option value="">Seleccionar...</option>
+                <For each={field.options}>
+                  {(option) => (
+                    <option value={option.value}>{option.text}</option>
+                  )}
+                </For>
+              </select>
+            </fieldset>
+            )
           )}
         </For>
       </form>
